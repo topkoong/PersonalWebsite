@@ -3,9 +3,10 @@ import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
 import formFields from './formFields';
+import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 // accept the props that is being passed in from the ProjectForm
-const ProjectFormReview = ({ onCancel, formValues, submitProject }) => {
+const ProjectFormReview = ({ onCancel, formValues, submitProject, history }) => {
   const reviewFields = _.map(formFields, ({ name, label }) => {
     return (
       <div key={name}>
@@ -27,7 +28,7 @@ const ProjectFormReview = ({ onCancel, formValues, submitProject }) => {
         Back
       </button>
       <button
-        onClick={() => submitProject(formValues)}
+        onClick={() => submitProject(formValues, history)}
         className="green btn-flat right white-text">
         Publish Project
         <i className="material-icons right">send</i>
@@ -40,4 +41,4 @@ function mapStateToProps(state) {
   return { formValues: state.form.projectForm.values };
 }
 
-export default connect(mapStateToProps, actions)(ProjectFormReview);
+export default connect(mapStateToProps, actions)(withRouter(ProjectFormReview));
