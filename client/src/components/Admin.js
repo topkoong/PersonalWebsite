@@ -10,13 +10,16 @@ class Admin extends Component {
       <div>
         Admin - Dashboard
         <div>
+          <a href="/auth/google">Sign in With Google</a>
+        </div>
+        {/* <div>
           <CreateBlog />
           <EditBlog />
         </div>
         <div>
           <CreateProject />
           <EditProject />
-        </div>
+        </div> */}
       </div>
     );
   }
