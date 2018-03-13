@@ -6,7 +6,8 @@ const Project = mongoose.model('projects');
 module.exports = app => {
 
   app.get('/api/projects', async (req, res) => {
-    const projects = await Project.find({ _user: req.user.id });
+    // const projects = await Project.find({ _user: req.user.id });
+    const projects = await Project.find({ creator: "Theerut Foongkiatcharoen" });
 
     res.send(projects);
   });
@@ -16,6 +17,7 @@ module.exports = app => {
 
     const project = new Project({
       title,
+      technology,
       description,
       creator,
       _user: req.user.id,

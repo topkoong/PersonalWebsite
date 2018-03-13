@@ -38,7 +38,6 @@ class Header extends Component {
 
             <li>
               {this.renderContent()}
-              <Link to='/admin'>Admin</Link>
             </li>
           </ul>
         </div>
@@ -46,7 +45,6 @@ class Header extends Component {
     );
   }
 }
-
 function mapStateToProps({ auth }) {
   return { auth };
 }

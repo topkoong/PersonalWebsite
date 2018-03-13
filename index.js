@@ -6,13 +6,14 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 require('./models/User');
 require('./models/Project');
+require('./models/Blog');
 require('./services/passport');
 
 mongoose.connect(keys.mongoURI);
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 app.use(
   cookieSession({
@@ -27,6 +28,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/projectRoutes')(app);
+require('./routes/blogRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets

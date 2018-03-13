@@ -12,23 +12,31 @@ class ProjectList extends Component {
       return (
         <div className="row">
           <div className="col s12 m6">
-            <div className="card darken-1" key={project._id}>
+            <div className="card">
+              <div className="card-image">
+                {this.props.auth ? <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a> : ''}
+              </div>
               <div className="card-content">
                 <span className="card-title">{project.title}</span>
                 <p>
-                  {project.description}
+                  <b>Technologies used: {project.technology} </b>
+                </p>
+                <p>
+                  <b>Creator: {project.creator}</b>
+                </p>
+                <p>
+                  <b>Project description: </b>{project.description}
                 </p>
                 <p className="right">
-                  Posted on: {new Date(project.datePosted).toLocaleDateString()}
+                  <b>Posted on: </b>{new Date(project.datePosted).toLocaleDateString()}
                 </p>
               </div>
               <div className="card-action">
-
+                <a href="test">This is a link</a>
               </div>
             </div>
           </div>
         </div>
-
       );
     })
   }
@@ -42,7 +50,7 @@ class ProjectList extends Component {
   }
 }
 
-function mapStateToProps({ projects }) {
-  return { projects };
+function mapStateToProps({ projects, auth }) {
+  return { projects, auth };
 }
 export default connect(mapStateToProps, { fetchProjects })(ProjectList);
