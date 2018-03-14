@@ -12,10 +12,12 @@ module.exports = app => {
   });
 
   app.post('/api/blogPosts', requireLogin, async (req, res) => {
-    const { title, body } = req.body;
+    const { title, author, tag, body } = req.body;
 
     const post = new blogPost({
       title,
+      author,
+      tag, 
       body,
       _user: req.user.id,
       datePosted: Date.now()
