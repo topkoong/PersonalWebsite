@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_PROJECTS, FETCH_BLOG_POSTS } from './types';
+import { FETCH_USER, FETCH_PROJECTS, FETCH_PROJECT, FETCH_BLOG_POSTS } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -21,10 +21,15 @@ export const fetchProjects = () => async dispatch => {
   dispatch({ type: FETCH_PROJECTS, payload: res.data });
 }
 
-export const submitBlogPost = (values) => async dispatch => {
-  const res = await axios.post('/api/blogPosts', values);
+export const fetchProject = id => async dispatch => {
+  const res = await axios.get(`/api/projects/${id}`);
 
-  //history.push('/blog');
+  dispatch({ type: FETCH_PROJECT, payload: res.data });
+}
+
+export const submitBlogPost = (values, history) => async dispatch => {
+  const res = await axios.post('/api/blogPosts', values);
+  history.push('/blog');
 
   dispatch({ type: FETCH_USER, payload: res.data });
 };

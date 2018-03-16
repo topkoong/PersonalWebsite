@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchBlogPosts } from '../../actions';
 import renderHTML from 'react-render-html';
+import { Link } from 'react-router-dom';
 
 
 class PostList extends Component {
@@ -21,7 +22,7 @@ class PostList extends Component {
               <div className="card-content">
                 <span className="card-title">{blogPost.title}</span>
                 <div className="row">
-                {renderHTML(truncate(blogPost.body))}
+                {renderHTML(truncate(blogPost.body, 150))}
                 </div>
                 <p className="left">
                   <b>Author: </b>{blogPost.author}
@@ -34,7 +35,7 @@ class PostList extends Component {
                 </p>
               </div>
               <div className="card-action">
-                <a href="test">This is a link</a>
+                <Link to="">Read more</Link>
               </div>
             </div>
           </div>
@@ -51,8 +52,15 @@ class PostList extends Component {
     );
   }
 }
-const truncate = (text) => {
-  return text.length > 120 ? `${text.substr(0, 120)}...` : text;
+const truncate = (str, len) => {
+  if (str.length > len && str.length > 0) {
+    let new_str = str + " ";
+    new_str = str.substr(0, len);
+    new_str = str.substr(0, new_str.lastIndexOf(" "));
+    new_str = (new_str.length > 0) ? new_str : str.substr(0, len);
+    return new_str + '...';
+  }
+  return str;
 }
 function mapStateToProps({ blogs, auth }) {
   return { blogs, auth };

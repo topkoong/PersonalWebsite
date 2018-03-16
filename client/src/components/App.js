@@ -14,6 +14,7 @@ import CreatePost from './blog/CreatePost';
 import EditPost from './blog/EditPost';
 import CreateProject from './project/CreateProject';
 import EditProject from './project/EditProject';
+import ProjectDetail from './project/ProjectDetail';
 
 class App extends Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class App extends Component {
             <Route exact path="/blog" component={Blog} />
             <Route exact path="/blog/new" component={CreatePost} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/project/:_id" component={ProjectDetail} />
           </div>
         </BrowserRouter>
       </div>

@@ -1,20 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchProjects } from '../../actions';
+import { Link } from 'react-router-dom';
+import _ from 'lodash';
+
 
 class ProjectList extends Component {
   componentDidMount() {
     this.props.fetchProjects();
   }
 
+
   renderProjects() {
-    return this.props.projects.reverse().map(project => {
+    // return this.props.projects.reverse().map(project => {
+    return _.map(this.props.projects, project => {
       return (
-        <div className="row">
+        <div className="row" key={project._id}>
           <div className="col s12 m6">
             <div className="card">
               <div className="card-image">
-                {this.props.auth ? <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">edit</i></a> : ''}
+                {this.props.auth ? <a className="btn-floating halfway-fab waves-effect waves-light red"><i className="material-icons">edit</i></a> : ''}
               </div>
               <div className="card-content">
                 <span className="card-title">{project.title}</span>
@@ -32,7 +37,7 @@ class ProjectList extends Component {
                 </p>
               </div>
               <div className="card-action">
-                <a href="test">This is a link</a>
+                <Link to={`/project/${project._id}`}>Read more</Link>
               </div>
             </div>
           </div>

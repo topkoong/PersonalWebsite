@@ -20,6 +20,7 @@ class PostForm extends Component {
       body: ''
     };
   }
+  
   renderFields(){
     return _.map(formFields, ({label, name}) => {
       return (
@@ -41,7 +42,8 @@ class PostForm extends Component {
   onHandleChange = e => {
     this.setState({body: e});
   }
-  onHandleSubmit = e => {
+  onHandleSubmit = (e) => {
+    //const {history} = this.props;
     e.preventDefault();
     //validation
     let errors = {};
