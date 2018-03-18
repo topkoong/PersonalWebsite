@@ -6,8 +6,8 @@ const projectSchema = new Schema({
   technology: String,
   description: String,
   creator: String,
-  _user: { type: Schema.Types.ObjectId, ref: 'User' },
-  datePosted: { type: Date, default: Date.now }
+  datePosted: Date,
+  _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
 mongoose.model('projects', projectSchema);

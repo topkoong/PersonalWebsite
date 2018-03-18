@@ -13,8 +13,8 @@ import Admin from './Admin';
 import CreatePost from './blog/CreatePost';
 import EditPost from './blog/EditPost';
 import CreateProject from './project/CreateProject';
-import EditProject from './project/EditProject';
 import ProjectDetail from './project/ProjectDetail';
+import ProjectEdit from './project/ProjectEdit';
 
 class App extends Component {
   componentDidMount() {
@@ -36,6 +36,7 @@ class App extends Component {
             <Route exact path="/blog/new" component={CreatePost} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/project/:_id" component={ProjectDetail} />
+            <Route exact path="/project/:_id/edit" component={ProjectEdit} />
           </div>
         </BrowserRouter>
       </div>

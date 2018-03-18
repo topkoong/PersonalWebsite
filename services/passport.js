@@ -26,14 +26,28 @@ passport.use(
       proxy: true
     },
     async (accessToken, refreshToken, profile, done) => {
-      const existingUser = await User.findOne({ googleId: profile.id });
-      if (existingUser) {
-        // we already have a record with a given profile ID
-        return done(null, existingUser); // tell passport we're finished here. Here's the user we've just found
+      try {
+        const existingUser = await User.findOne({ googleId: profile.id });
+        if (existingUser) {
+          // we already have a record with a given profile ID
+          return done(null, existingUser); // tell passport we're finished here. Here's the user we've just found
+        }
+        // we don't have a user record with this id, make a new record.
+        // const user = await new User({ googleId: profile.id }).save();
+        let imageUrl = '';
+        if (profile.photos && profile.photos.length) {
+          imageUrl = profile.photos[0].value;
+        }
+        const user = await new User({
+          googleId: profile.id,
+          displayName: profile.displayName,
+          image: imageUrl
+
+        }).save();
+        done(null, user);
+      } catch (error) {
+        done(err, null);
       }
-      // we don't have a user record with this id, make a new record.
-      const user = await new User({ googleId: profile.id }).save();
-      done(null, user);
     }
   )
 );

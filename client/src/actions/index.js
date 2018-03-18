@@ -27,6 +27,11 @@ export const fetchProject = id => async dispatch => {
   dispatch({ type: FETCH_PROJECT, payload: res.data });
 }
 
+export const editProject = (id, values) => async dispatch => {
+  const res = await axios.put(`/api/projects/${id}/edit`, values);
+  dispatch({ type: FETCH_PROJECT, payload: res.data });
+}
+
 export const submitBlogPost = (values, history) => async dispatch => {
   const res = await axios.post('/api/blogPosts', values);
   history.push('/blog');

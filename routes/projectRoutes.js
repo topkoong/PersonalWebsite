@@ -13,32 +13,50 @@ module.exports = app => {
     res.send(project);
   });
 
+  // edit single project
+  app.put('/api/projects/:id/edit', requireLogin, async (req, res) => {
+    try {
+      const project = await Project.findOne({
+        _id: req.params.id
+      });
+      project.title = req.body.title;
+      project.technology = req.body.technology;
+      project.description = req.body.description;
+      project.creator = req.body.creator;
+      project.datePosted = Date.now();
+      project._user = req.user.id;
+      await project.save();
+      //const user = await req.user.save();
+      res.send(project);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+
   app.get('/api/projects', async (req, res) => {
-    // const projects = await Project.find({ _user: req.user.id });
-    const projects = await Project.find({
-      creator: "Theerut Foongkiatcharoen" 
-    });
+    const projects = await Project.find({ _user: req.user.id });
+    // const projects = await Project.find({
+    //   creator: "Theerut Foongkiatcharoen" 
+    // });
     res.send(projects);
   });
 
   app.post('/api/projects', requireLogin, async (req, res) => {
-    const { title, description, creator } = req.body;
-
+    const { title, technology, description, creator } = req.body;
     const project = new Project({
       title,
       technology,
       description,
       creator,
-      _user: req.user.id,
-      datePosted: Date.now()
+      datePosted: Date.now(),
+      _user: req.user.id
     });
     try {
       await project.save();
       const user = await req.user.save();
-
       res.send(user);
     } catch (err) {
-      res.status(400).send(err);
+      res.status(422).send(err);
     }
   });
 };
