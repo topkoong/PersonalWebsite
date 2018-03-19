@@ -14,28 +14,14 @@ class ProjectEdit extends Component {
     super(props);
     this.state = {};
   }
-
-  renderFields() {
-    return _.map(formFields, ({ label, name }) => {
-        return (
-        <Field
-            key={name}
-            component={ProjectField}
-            type="text"
-            label={label}
-            name={name}
-        />
-        );
-    });
-  }
   componentDidMount() {
-    this.props.fetchProject(this.props.match.params._id);
+    const { _id } = this.props.match.params;
+    this.props.fetchProject(_id);
   }
 
   componentWillReceiveProps({ project }) {
     if (project) {
       const { title, technology, description, creator } = project;
-
       this.setState({ title, technology, description, creator });
     }
   }
@@ -43,8 +29,9 @@ class ProjectEdit extends Component {
   onHandleSubmit = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    this.props.editProject(this.props.match.params._id, this.state);
-    this.props.history.push("/project");
+    const { history} = this.props;
+    this.props.editProject(this.props.match.params._id, this.state, history);
+    //this.props.history.push("/project");
   }
 
   render() {
@@ -94,30 +81,11 @@ class ProjectEdit extends Component {
 
 }
 
-// function validate(values) {
-//   const errors = {};
-
-//   _.each(formFields, ({ name, noValueError }) => {
-//     if (!values[name]) {
-//       errors[name] = 'You must provide a value';
-//     }
-//   });
-//   return errors;
-// }
-
 // ownProps is the prop obj that is going to ProjectDetail component up top.
 const  mapStateToProps = ({ projects, auth }, ownProps) => {
-  return { auth, project: projects[ownProps.match.params._id] };
+  return { auth, project: projects[ownProps.match.params._id]};
 }
 
 export default connect(mapStateToProps, actions)(withRouter(ProjectEdit));
-// ProjectEdit = connect(mapStateToProps, { fetchProject })(ProjectEdit);
-
-
-// export default reduxForm({
-//   validate,
-//   form: 'projectForm',
-//   destroyOnUnmount: false
-// })(ProjectEdit);
 
 

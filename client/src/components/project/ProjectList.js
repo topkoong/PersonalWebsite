@@ -6,11 +6,10 @@ import _ from 'lodash';
 
 
 class ProjectList extends Component {
+  
   componentDidMount() {
     this.props.fetchProjects();
   }
-
-
   renderProjects() {
     // return this.props.projects.reverse().map(project => {
     return _.map(this.props.projects, project => {
@@ -40,6 +39,7 @@ class ProjectList extends Component {
               <div className="card-action">
                 <Link to={`/project/${project._id}`}>Read more</Link>
               </div>
+
             </div>
           </div>
         </div>

@@ -27,9 +27,16 @@ export const fetchProject = id => async dispatch => {
   dispatch({ type: FETCH_PROJECT, payload: res.data });
 }
 
-export const editProject = (id, values) => async dispatch => {
+export const editProject = (id, values, history) => async dispatch => {
   const res = await axios.put(`/api/projects/${id}/edit`, values);
-  dispatch({ type: FETCH_PROJECT, payload: res.data });
+  dispatch({ type: FETCH_PROJECTS, payload: res.data });
+  history.push('/project');
+}
+
+export const deleteProject = (id, history) => async dispatch => {
+  const res = await axios.delete(`/api/projects/${id}`);
+  dispatch({ type: FETCH_PROJECTS, payload: res.data });
+  history.push('/project');
 }
 
 export const submitBlogPost = (values, history) => async dispatch => {

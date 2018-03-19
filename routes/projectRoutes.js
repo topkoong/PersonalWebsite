@@ -26,12 +26,13 @@ module.exports = app => {
       project.datePosted = Date.now();
       project._user = req.user.id;
       await project.save();
-      //const user = await req.user.save();
       res.send(project);
     } catch (err) {
       res.status(422).send(err);
     }
   });
+
+  // fetch projects
 
   app.get('/api/projects', async (req, res) => {
     const projects = await Project.find({ _user: req.user.id });
@@ -40,6 +41,8 @@ module.exports = app => {
     // });
     res.send(projects);
   });
+
+  // create a new project
 
   app.post('/api/projects', requireLogin, async (req, res) => {
     const { title, technology, description, creator } = req.body;
@@ -55,6 +58,19 @@ module.exports = app => {
       await project.save();
       const user = await req.user.save();
       res.send(user);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+
+  // delete a single project
+
+  app.delete('/api/projects/:id', requireLogin, async (req, res) => {
+    try {
+      const project = await Project.remove({
+        _id: req.params.id
+      });
+      res.sendStatus(200);
     } catch (err) {
       res.status(422).send(err);
     }
