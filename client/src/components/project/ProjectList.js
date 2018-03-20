@@ -14,15 +14,15 @@ class ProjectList extends Component {
   }
   componentDidMount() {
     this.props.fetchProjects();
-    this.setState({
-      projects: this.props.projects
-    });
+    // this.setState({
+    //   projects: this.props.projects
+    // });
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.projects !== this.props.projects) {
-      this.props.fetchProjects();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.projects !== this.props.projects) {
+  //     this.props.fetchProjects();
+  //   }
+  // }
   renderProjects() {
     // return this.props.projects.reverse().map(project => {
     return _.map(this.props.projects, project => {

@@ -30,9 +30,7 @@ class ProjectEdit extends Component {
     event.preventDefault();
     event.stopPropagation();
     const { history} = this.props;
-    const project = {...this.state.project};
     this.props.editProject(this.props.match.params._id, this.state, history);
-    this.setState({project});
   }
 
   render() {

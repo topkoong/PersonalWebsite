@@ -35,10 +35,7 @@ class Header extends Component {
             <li>
               <Link to='/blog'>Blog</Link>
             </li>
-
-            <li>
-              {this.renderContent()}
-            </li>
+            {this.renderContent()}
           </ul>
         </div>
       </nav>

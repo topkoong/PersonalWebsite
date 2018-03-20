@@ -36,7 +36,8 @@ module.exports = app => {
   // fetch projects
 
   app.get('/api/projects', async (req, res) => {
-    const projects = await Project.find({ _user: req.user.id });
+    // const projects = await Project.find({ _user: req.user.id });
+    const projects = await Project.find();
     // const projects = await Project.find({
     //   creator: "Theerut Foongkiatcharoen" 
     // });

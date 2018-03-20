@@ -7,7 +7,7 @@ const Home = () => {
       <div className="col s6">
         <img className="responsive-img" src="https://scontent.fewr1-4.fna.fbcdn.net/v/t1.0-9/23905307_10214400483021923_736847013313396028_n.jpg?oh=57b0787b633f1489463dc7c18f02a41c&oe=5B0E8B8E" />
       </div>
-      <div class="col s6">
+      <div className="col s6">
         <div style={{ textAlign: 'center' }}>
           <h3>
             I'm Theerut Foongkiatcharoen
