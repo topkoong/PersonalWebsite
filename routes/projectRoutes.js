@@ -26,6 +26,7 @@ module.exports = app => {
       project.datePosted = Date.now();
       project._user = req.user.id;
       await project.save();
+      // res.send(project);
       res.send(project);
     } catch (err) {
       res.status(422).send(err);
@@ -70,7 +71,8 @@ module.exports = app => {
       const project = await Project.remove({
         _id: req.params.id
       });
-      res.sendStatus(200);
+      //res.sendStatus(200);
+      res.send(project);
     } catch (err) {
       res.status(422).send(err);
     }

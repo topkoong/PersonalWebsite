@@ -18,7 +18,8 @@ class ProjectDetail extends Component {
     onDeleteClick() {
         console.log("Delete Project was clicked");
         const { history } = this.props;
-        this.props.deleteProject(this.props.project._id, history);
+        this.props.deleteProject(this.props.project._id, history, this.state);
+        this.setState({project: ''});
     }
 
     render() {

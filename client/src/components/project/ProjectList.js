@@ -6,9 +6,22 @@ import _ from 'lodash';
 
 
 class ProjectList extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      projects: {}
+    };
+  }
   componentDidMount() {
     this.props.fetchProjects();
+    this.setState({
+      projects: this.props.projects
+    });
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.projects !== this.props.projects) {
+      this.props.fetchProjects();
+    }
   }
   renderProjects() {
     // return this.props.projects.reverse().map(project => {
