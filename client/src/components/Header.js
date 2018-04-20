@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Header extends Component {
   renderContent() {
@@ -8,9 +8,17 @@ class Header extends Component {
       case null:
         return;
       case false:
-        return <li><a href="/auth/google">Login With Google</a></li>;
+        return (
+          <li>
+            <a href="/auth/google">Login With Google</a>
+          </li>
+        );
       default:
-        return <li><a href="/api/logout">Logout</a></li>;
+        return (
+          <li>
+            <a href="/api/logout">Logout</a>
+          </li>
+        );
     }
   }
   render() {
@@ -18,22 +26,22 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper">
-          <a className="left brand-logo">THEERUTTOP</a>
+          <a className="left brand-logo">&nbsp;THEERUTTOP</a>
           <ul className="right">
             <li>
-              <Link to='/'>Home</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to='/about'>About</Link>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <Link to='/project'>Project</Link>
+              <Link to="/project">Project</Link>
             </li>
             <li>
-              <Link to='/resume'>Resume</Link>
+              <Link to="/resume">Resume</Link>
             </li>
             <li>
-              <Link to='/blog'>Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
             {this.renderContent()}
           </ul>

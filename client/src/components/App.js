@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 // Components
-import Home from './Home';
-import Header from './Header';
-import About from './About';
-import Project from './Project';
-import Resume from './Resume';
-import Blog from './Blog';
-import Admin from './Admin';
-import CreatePost from './blog/CreatePost';
-import EditPost from './blog/EditPost';
-import CreateProject from './project/CreateProject';
-import ProjectDetail from './project/ProjectDetail';
-import ProjectEdit from './project/ProjectEdit';
+import Home from "./Home";
+import Header from "./Header";
+import About from "./About";
+import Project from "./Project";
+import Resume from "./Resume";
+import Blog from "./Blog";
+import Admin from "./Admin";
+import CreatePost from "./blog/CreatePost";
+import PostEdit from "./blog/PostEdit";
+import PostDetail from "./blog/PostDetail";
+import CreateProject from "./project/CreateProject";
+import ProjectDetail from "./project/ProjectDetail";
+import ProjectEdit from "./project/ProjectEdit";
 
 class App extends Component {
   componentDidMount() {
@@ -34,6 +35,8 @@ class App extends Component {
             <Route exact path="/resume" component={Resume} />
             <Route exact path="/blog" component={Blog} />
             <Route exact path="/blog/new" component={CreatePost} />
+            <Route exact path="/blog/:_id" component={PostDetail} />
+            <Route exact path="/blog/:_id/edit" component={PostEdit} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/project/:_id" component={ProjectDetail} />
             <Route exact path="/project/:_id/edit" component={ProjectEdit} />
@@ -42,6 +45,6 @@ class App extends Component {
       </div>
     );
   }
-};
+}
 
 export default connect(null, actions)(App);

@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-const requireLogin = require('../middlewares/requireLogin');
+const mongoose = require("mongoose");
+const requireLogin = require("../middlewares/requireLogin");
 
-const Project = mongoose.model('projects');
+const Project = mongoose.model("projects");
 
 module.exports = app => {
-
   // show single project
-  app.get('/api/projects/:id', async (req, res) => {
+  app.get("/api/projects/:id", async (req, res) => {
     const project = await Project.findOne({
       _id: req.params.id
     });
@@ -14,7 +13,7 @@ module.exports = app => {
   });
 
   // edit single project
-  app.put('/api/projects/:id/edit', requireLogin, async (req, res) => {
+  app.put("/api/projects/:id/edit", requireLogin, async (req, res) => {
     try {
       const project = await Project.findOne({
         _id: req.params.id
@@ -35,18 +34,13 @@ module.exports = app => {
 
   // fetch projects
 
-  app.get('/api/projects', async (req, res) => {
-    // const projects = await Project.find({ _user: req.user.id });
+  app.get("/api/projects", async (req, res) => {
     const projects = await Project.find();
-    // const projects = await Project.find({
-    //   creator: "Theerut Foongkiatcharoen" 
-    // });
     res.send(projects);
   });
 
   // create a new project
-
-  app.post('/api/projects', requireLogin, async (req, res) => {
+  app.post("/api/projects", requireLogin, async (req, res) => {
     const { title, technology, description, creator } = req.body;
     const project = new Project({
       title,
@@ -67,7 +61,7 @@ module.exports = app => {
 
   // delete a single project
 
-  app.delete('/api/projects/:id', requireLogin, async (req, res) => {
+  app.delete("/api/projects/:id", requireLogin, async (req, res) => {
     try {
       const project = await Project.remove({
         _id: req.params.id
