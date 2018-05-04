@@ -8,8 +8,6 @@ import formFields from "./formFields";
 import { withRouter } from "react-router-dom";
 import * as actions from "../../actions";
 
-//import { reduxForm, Field } from 'redux-form';
-
 class PostForm extends Component {
   constructor(props) {
     super(props);

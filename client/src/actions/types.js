@@ -6,3 +6,4 @@ export const FETCH_BLOG_POST = "fetch_blog_post";
 export const DELETE_PROJECT = "delete_project";
 export const DELETE_BLOG_POST = "delete_blog_post";
 export const EDIT_PROJECT = "edit_project";
+export const EDIT_BLOG_POST = "edit_blog_post";

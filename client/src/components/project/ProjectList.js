@@ -19,7 +19,7 @@ class ProjectList extends Component {
       return (
         <div className="row" key={project._id}>
           <div className="col s12 m6">
-            <div className="card">
+            <div className="card grey lighten-5">
               <div className="card-image">
                 {this.props.auth ? (
                   <Link

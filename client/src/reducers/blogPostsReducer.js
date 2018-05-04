@@ -2,7 +2,8 @@ import _ from "lodash";
 import {
   FETCH_BLOG_POSTS,
   FETCH_BLOG_POST,
-  DELETE_BLOG_POST
+  DELETE_BLOG_POST,
+  EDIT_BLOG_POST
 } from "../actions/types";
 
 export default function(state = [], action) {
@@ -14,6 +15,11 @@ export default function(state = [], action) {
       return { ...state, [blog._id]: blog };
     case DELETE_BLOG_POST:
       return _.filter(state.blogs, blog => blog._id !== blog._id);
+    case EDIT_BLOG_POST:
+      return _.map(
+        state.blogs,
+        blog => (blog._id === action._id ? action.payload : blog)
+      );
     default:
       return state;
   }

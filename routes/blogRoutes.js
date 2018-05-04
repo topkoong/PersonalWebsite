@@ -38,6 +38,25 @@ module.exports = app => {
     }
   });
 
+  // edit single project
+  app.put("/api/blogPosts/:id/edit", requireLogin, async (req, res) => {
+    try {
+      const blog = await blogPost.findOne({
+        _id: req.params.id
+      });
+      blog.title = req.body.title;
+      blog.author = req.body.author;
+      blog.tag = req.body.tag;
+      blog.body = req.body.body;
+      blog.datePosted = Date.now();
+      blog._user = req.user.id;
+      await blog.save();
+      res.send(blog);
+    } catch (err) {
+      res.status(422).send(err);
+    }
+  });
+
   // delete a single post
 
   app.delete("/api/blogPosts/:id", requireLogin, async (req, res) => {

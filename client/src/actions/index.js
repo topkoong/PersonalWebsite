@@ -7,7 +7,8 @@ import {
   FETCH_BLOG_POST,
   DELETE_PROJECT,
   DELETE_BLOG_POST,
-  EDIT_PROJECT
+  EDIT_PROJECT,
+  EDIT_BLOG_POST
 } from "./types";
 
 export const fetchUser = () => async dispatch => {
@@ -64,6 +65,12 @@ export const fetchBlogPost = id => async dispatch => {
   const res = await axios.get(`/api/blogPosts/${id}`);
 
   dispatch({ type: FETCH_BLOG_POST, payload: res.data });
+};
+
+export const editBlogPost = (id, values, history) => async dispatch => {
+  const res = await axios.put(`/api/blogPosts/${id}/edit`, values);
+  dispatch({ type: EDIT_BLOG_POST, payload: res.data });
+  history.push("/blog");
 };
 
 export const deleteBlogPost = (id, history, state) => async dispatch => {

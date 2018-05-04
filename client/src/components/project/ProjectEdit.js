@@ -1,13 +1,12 @@
-import _ from 'lodash';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
-import { Link } from 'react-router-dom';
-import ProjectField from './ProjectField';
-import formFields from './formFields';
-import * as actions from '../../actions';
+import _ from "lodash";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { reduxForm, Field } from "redux-form";
+import { Link } from "react-router-dom";
+import ProjectField from "./ProjectField";
+import formFields from "./formFields";
+import * as actions from "../../actions";
 import { withRouter } from "react-router-dom";
-
 
 class ProjectEdit extends Component {
   constructor(props) {
@@ -26,15 +25,15 @@ class ProjectEdit extends Component {
     }
   }
 
-  onHandleSubmit = (event) => {
+  onHandleSubmit = event => {
     event.preventDefault();
     event.stopPropagation();
-    const { history} = this.props;
+    const { history } = this.props;
     this.props.editProject(this.props.match.params._id, this.state, history);
-  }
+  };
 
   render() {
-    return(
+    return (
       <div>
         <form onSubmit={this.onHandleSubmit}>
           <div className="input-field">
@@ -76,15 +75,11 @@ class ProjectEdit extends Component {
       </div>
     );
   }
-  
-
 }
 
 // ownProps is the prop obj that is going to ProjectDetail component up top.
-const  mapStateToProps = ({ projects, auth }, ownProps) => {
-  return { auth, project: projects[ownProps.match.params._id]};
-}
+const mapStateToProps = ({ projects, auth }, ownProps) => {
+  return { auth, project: projects[ownProps.match.params._id] };
+};
 
 export default connect(mapStateToProps, actions)(withRouter(ProjectEdit));
-
-

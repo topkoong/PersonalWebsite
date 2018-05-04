@@ -13,14 +13,17 @@ class PostList extends Component {
   renderPosts() {
     return _.map(this.props.blogs, blog => {
       return (
-        <div className="row" key={blog._id}>
-          <div className="col s12 m12">
-            <div className="card">
+        <div className="row">
+          <div className="col s12 m6">
+            <div className="card grey lighten-5" key={blog._id}>
               <div className="card-image">
                 {this.props.auth ? (
-                  <a className="btn-floating halfway-fab waves-effect waves-light red">
+                  <Link
+                    to={`/blog/${blog._id}/edit`}
+                    className="btn-floating halfway-fab waves-effect waves-light red"
+                  >
                     <i className="material-icons">edit</i>
-                  </a>
+                  </Link>
                 ) : (
                   ""
                 )}
