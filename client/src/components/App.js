@@ -16,6 +16,12 @@ import PostDetail from "./blog/PostDetail";
 import CreateProject from "./project/CreateProject";
 import ProjectDetail from "./project/ProjectDetail";
 import ProjectEdit from "./project/ProjectEdit";
+import CreateProfile from "./profile/CreateProfile";
+import AddExperience from "./profile/experience/AddExperience";
+import AddEducation from "./profile/education/AddEducation";
+import ProfileEdit from "./profile/ProfileEdit";
+import Profile from "./Profile";
+import Profiles from "./profiles/Profiles";
 
 class App extends Component {
   componentDidMount() {
@@ -37,9 +43,23 @@ class App extends Component {
             <Route exact path="/blog/new" component={CreatePost} />
             <Route exact path="/blog/:_id" component={PostDetail} />
             <Route exact path="/blog/:_id/edit" component={PostEdit} />
-            <Route exact path="/admin" component={Admin} />
             <Route exact path="/project/:_id" component={ProjectDetail} />
             <Route exact path="/project/:_id/edit" component={ProjectEdit} />
+            <Route exact path="/admin" component={Admin} />
+            <Route exact path="/profiles" component={Profiles} />
+            <Route exact path="/profile/:handle" component={Profile} />
+            <Route exact path="/profile/new" component={CreateProfile} />
+            <Route exact path="/profile/edit" component={ProfileEdit} />
+            <Route
+              exact
+              path="/profile/experience/add"
+              component={AddExperience}
+            />
+            <Route
+              exact
+              path="/profile/education/add"
+              component={AddEducation}
+            />
           </div>
         </BrowserRouter>
       </div>

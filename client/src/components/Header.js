@@ -22,7 +22,6 @@ class Header extends Component {
     }
   }
   render() {
-    console.log(this.props);
     return (
       <nav>
         <div className="nav-wrapper">
@@ -32,7 +31,7 @@ class Header extends Component {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/profiles">Profiles</Link>
             </li>
             <li>
               <Link to="/project">Project</Link>
@@ -42,6 +41,9 @@ class Header extends Component {
             </li>
             <li>
               <Link to="/blog">Blog</Link>
+            </li>
+            <li>
+              <Link to="/admin">Dashboard</Link>
             </li>
             {this.renderContent()}
           </ul>

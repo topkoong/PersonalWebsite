@@ -69,6 +69,7 @@ class PostForm extends Component {
       this.props.submitBlogPost(post, history);
     }
   };
+
   render() {
     return (
       <div>
