@@ -47,7 +47,7 @@ class App extends Component {
             <Route exact path="/project/:_id/edit" component={ProjectEdit} />
             <Route exact path="/admin" component={Admin} />
             <Route exact path="/profiles" component={Profiles} />
-            <Route exact path="/profile/:handle" component={Profile} />
+            <Route exact path="/profiles/:handle" component={Profile} />
             <Route exact path="/profile/new" component={CreateProfile} />
             <Route exact path="/profile/edit" component={ProfileEdit} />
             <Route

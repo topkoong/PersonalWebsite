@@ -27,7 +27,11 @@ class ProfileItem extends Component {
                   <span>{profile.location}</span>
                 )}
               </p>
-              <Link to={`/profile/${profile.handle}`} className="btn btn-info">
+              <Link
+                to={`/profiles/${profile.handle}`}
+                className="btn"
+                style={{ marginTop: "10px" }}
+              >
                 View Profile
               </Link>
             </div>

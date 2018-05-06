@@ -32,12 +32,16 @@ class Profile extends Component {
       profileContent = (
         <div>
           <div className="row">
-            <div className="col-md-6">
-              <Link to="/profiles" className="btn btn-light mb-3 float-left">
+            <div className="col m6">
+              <Link
+                to="/profiles"
+                className="btn left"
+                style={{ marginTop: "10px" }}
+              >
                 Back To Profiles
               </Link>
             </div>
-            <div className="col-md-6" />
+            <div className="col m6" />
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
@@ -56,7 +60,7 @@ class Profile extends Component {
       <div className="profile">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">{profileContent}</div>
+            <div className="col m12">{profileContent}</div>
           </div>
         </div>
       </div>
