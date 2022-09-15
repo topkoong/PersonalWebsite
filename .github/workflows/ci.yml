@@ -1,0 +1,50 @@
+name: Continous Integration
+
+on:
+  push:
+    branches:
+      - 'source'
+  pull_request:
+  workflow_dispatch:
+
+permissions: write-all
+
+jobs:
+  build:
+    name: 'Build 📦'
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: Checking out the latest code
+        uses: actions/checkout@v3
+
+      - name: Setting up nodejs for building codebase and Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Installing Client Dependencies
+        run: | 
+          npm install -g yarn
+          cd client
+          yarn
+          
+      - name: Installing Server Dependencies
+        run: npm install
+
+
+  dependabot:
+      name: 'Dependabot'
+      needs: [build] # After the build job, if it fails, it won't merge the PR.
+      runs-on: ubuntu-latest
+      if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request'}} # Detect that the PR author is dependabot
+      steps:
+        - name: Enable auto-merge for Dependabot PRs
+          run: gh pr merge --auto --merge "$PR_URL" # Use Github CLI to merge automatically the PR
+          env:
+            PR_URL: ${{github.event.pull_request.html_url}}
+            GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
