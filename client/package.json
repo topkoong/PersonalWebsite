@@ -11,7 +11,7 @@
     }
   },
   "dependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.0.0",
     "draft-js": "^0.11.7",
     "lodash": "^4.17.5",
     "materialize-css": "^1.0.0",
