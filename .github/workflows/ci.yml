@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Checking out the latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setting up nodejs for building codebase and Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
